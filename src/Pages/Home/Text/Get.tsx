@@ -8,7 +8,7 @@ const Get = () => {
 
   const handleSubmit = async () => {
     try {
-      if (code === "") {
+      if (code.trim() === "") {
         toast.error("Can't fetch empty code");
         return;
       }
@@ -16,34 +16,39 @@ const Get = () => {
       setNote(result.data.noteVal.text);
       toast.success("Fetched successfully");
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      toast.error("Failed to fetch note");
     }
   };
+
   return (
-    <div>
-      <label>
+    <div className="flex flex-col gap-6 max-w-3xl mx-auto p-6 bg-gray-900 rounded-2xl shadow-lg">
+      <div className="flex gap-2">
         <input
-          className="border-2 border-black border-solid"
-          value={code}
           type="text"
           maxLength={6}
-          onChange={(e) => {
-            setCode(e.target.value);
-          }}
+          placeholder="Enter code"
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
+          className="flex-grow rounded-3xl p-4 bg-gray-800 border-2 border-gray-700 focus:border-indigo-500 outline-none text-white placeholder-gray-400 transition"
         />
-        <button type="button" className="" onClick={handleSubmit}>
+        <button
+          type="button"
+          onClick={handleSubmit}
+          className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-full transition shadow-md active:scale-95"
+        >
           Get Note
         </button>
-        {note !== "" && (
-          <textarea
-            value={note}
-            cols={30}
-            rows={10}
-            readOnly
-            className="border-black border-2 border-solid rounded-3xl p-2"
-          />
-        )}
-      </label>
+      </div>
+
+      {note && (
+        <textarea
+          readOnly
+          value={note}
+          rows={10}
+          className="w-full rounded-3xl p-4 bg-gray-800 border-2 border-gray-700 text-white resize-none"
+        />
+      )}
     </div>
   );
 };
