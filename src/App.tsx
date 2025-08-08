@@ -1,7 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Home from "./Pages/Home/Home";
-import Text from "./Pages/Home/Text/Text";
+import Text from "./Pages/Text/Text";
+import File from "./Pages/File/File";
 
 const App = () => {
   return (
@@ -9,7 +10,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/text" element={<Text />} />
-        <Route path="/file" element={<Home />} />
+        <Route path="/file" element={<File />} />
       </Routes>
       <Toaster />
     </div>

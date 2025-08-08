@@ -1,6 +1,6 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import TextServices from "../../../Services/TextServices";
+import TextServices from "../../Services/TextServices";
 
 const Get = () => {
   const [code, setCode] = useState<string>("");

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import TextServices from "../../../Services/TextServices";
+import TextServices from "../../Services/TextServices";
 
 const Create = () => {
   const [text, setText] = useState<string>("");
@@ -23,11 +23,14 @@ const Create = () => {
 
   const handleCopyCode = () => {
     if (code) {
-      navigator.clipboard.writeText(code).then(() => {
-        toast.success("Code copied to clipboard!");
-      }).catch(() => {
-        toast.error("Failed to copy code");
-      });
+      navigator.clipboard
+        .writeText(code)
+        .then(() => {
+          toast.success("Code copied to clipboard!");
+        })
+        .catch(() => {
+          toast.error("Failed to copy code");
+        });
     }
   };
 
